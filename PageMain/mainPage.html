@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>我的主页</title>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-    </head>
 
-    <body>
-        <div id="test">
-            <p>
-                <button @click="getSQL">按键</button>
-            </p>
-            <p>
-                {{ message }}
-            </p>
+<head>
+    <title>我的主页</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
 
-        </div>
-    </body>
+<body>
+    <div id="test">
+        <p>
+            <button @click="getSQL">按键</button>
+        </p>
+        <p>
+            {{ message }}
+        </p>
 
-    <script>
-        var watchExampleVM = new Vue({
-            el: '#test',
-            data: {
-             message: 'I cannot give you an answer until you ask a question!'
-            },
-            methods: {
-                getSQL: function(){
-                    var vm = this
+    </div>
+</body>
 
-                    //this.message = "hello"
-                    var obj = JSON.parse('{ "name":"runoob", "alexa":10000, "site":"www.runoob.com" }')
+<script>
+    var watchExampleVM = new Vue({
+        el: '#test',
+        data: {
+            message: 'I cannot give you an answer until you ask a question!'
+        },
+        methods: {
+            getSQL: function() {
+                var vm = this
+
+                //this.message = "hello"
+                var obj = JSON.parse('{ "name":"runoob", "alexa":10000, "site":"www.runoob.com" }')
                     //vm.message = obj.name
 
-                    $.getJSON("http://localhost:7080/getuser",function(data){
-                        /*
-  $.each( data, function( key, val ) {
-    items.push( "<li id='" + key + "'>" + val + "</li>" );
-    vm.message = data
-    
-});*/
-    console.log(data)
-    var text = '{ "num": "1", "name": "xiaoming", "tel": "123456" }'
-    var myJSON = JSON.stringify(data[1]);
-    var obj = JSON.parse(myJSON)
-    vm.message = obj.name 
-  
-                        //vm.message = 
-                      });
-                    
-                }
+                $.getJSON("http://localhost:7080/getuser", function(data) {
+                    /*
+                    $.each(data, function(key, val) {
+                        items.push("<li id='" + key + "'>" + val + "</li>");
+                        vm.message = data
+
+                    });*/
+                    console.log(data)
+                    for (j = 0; j < data.length; j++) {
+                        var text = data[j]
+                        var myJSON = JSON.stringify(text)
+                        var obj = JSON.parse(myJSON)
+                        console.log(obj.name)
+                    }
+
+                    vm.message = obj.name
+                });
 
             }
-        
-        });
-    </script>
+
+        }
+
+    });
+</script>
+
 </html>
