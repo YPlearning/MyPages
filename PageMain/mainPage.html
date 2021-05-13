@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>我的主页</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div id="test">
+            <p>
+                <button @click="getSQL">按键</button>
+            </p>
+            <p>
+                {{ message }}
+            </p>
+
+        </div>
+    </body>
+
+    <script>
+        var watchExampleVM = new Vue({
+            el: '#test',
+            data: {
+             message: 'I cannot give you an answer until you ask a question!'
+            },
+            methods: {
+                getSQL: function(){
+                    var vm = this
+
+                    //this.message = "hello"
+                    var obj = JSON.parse('{ "name":"runoob", "alexa":10000, "site":"www.runoob.com" }')
+                    //vm.message = obj.name
+
+                    $.getJSON("https://yesno.wtf/api",function(data){
+                        /*
+  $.each( data, function( key, val ) {
+    items.push( "<li id='" + key + "'>" + val + "</li>" );
+    vm.message = data
+    
+});*/
+    console.log(data)
+    vm.message = data["answer"]
+  
+                        //vm.message = 
+                      });
+                    
+                }
+
+            }
+        
+        });
+    </script>
+</html>
