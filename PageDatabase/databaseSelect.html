@@ -1,20 +1,19 @@
 <html>
 
-    <head>
-        <title>数据库查询</title>
-        <!-- 引入样式 -->
-        <link rel="stylesheet" href="../lib/elementui/theme-chalk/index.css"
-            type="text/css">
+<head>
+    <title>数据库查询</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../lib/elementui/theme-chalk/index.css" type="text/css">
 
-        <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-        <script src="../lib/vue.js"></script>
-    </head>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../lib/vue.js"></script>
+</head>
 
-    <body>
-        <div id="app">
-            <el-container>
-                <el-aside width="300">
-                    <template>
+<body>
+    <div id="app">
+        <el-container>
+            <el-aside width="300">
+                <template>
                         <el-table
                             :data="tableData"
                             style="width: 100%"
@@ -40,37 +39,34 @@
                         </el-table>
                     </template>
 
-                    <el-button type="primary" plain @click="getTabelData">获取数据库数据</el-button>
-                    <p>
-                        {{ message }}
-                    </p>
-                </el-aside>
-                <el-main>
-                    <div>
-                        <img src="../pic/头像.jpeg"
-                            alt="Pulpit rock"
-                            width="400"
-                            height="400">
+                <el-button type="primary" plain @click="getTabelData">获取数据库数据</el-button>
+                <p>
+                    {{ message }}
+                </p>
+            </el-aside>
+            <el-main>
+                <div>
+                    <img src="../pic/头像.jpeg" alt="Pulpit rock" width="400" height="400">
 
-                    </div>
-                </el-main>
-            </el-container>
+                </div>
+            </el-main>
+        </el-container>
 
-        </div>
+    </div>
 
-        <!-- 引入组件库 -->
-        <script type="text/javascript" src="../lib/elementui/index.js"></script>
-        <script type="text/javascript">
+    <!-- 引入组件库 -->
+    <script type="text/javascript" src="../lib/elementui/index.js"></script>
+    <script type="text/javascript">
         var dataControl = new Vue({
             el: "#app",
             data: {
                 tableData: [],
-                message:"hello"
+                message: "hello"
             },
 
             methods: {
                 getTabelData: function() {
-                    $.getJSON("http://localhost:7080/getuser", function(data) {
+                    $.getJSON("http://localhost:8080/select?tablename=test", function(data) {
                         //console.log(data)
                         for (j = 0; j < data.length; j++) {
                             var text = data[j]
@@ -88,14 +84,14 @@
                     }
                     dataControl._data.tableData.push(newValue)*/
                 },
-            openDetails: function (row) {
-                //具体操作        
-                console.log(row)
-                dataControl.message = row.name
-            }
+                openDetails: function(row) {
+                    //具体操作        
+                    console.log(row)
+                    dataControl.message = row.name
+                }
             }
         });
     </script>
-    </body>
+</body>
 
 </html>
