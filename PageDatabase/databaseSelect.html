@@ -22,17 +22,17 @@
                             :highlight-current-row="true"
                             @row-click="openDetails">
                             <el-table-column
-                                prop="num"
+                                prop="time"
                                 label="日期"
                                 width="50">
                             </el-table-column>
                             <el-table-column
-                                prop="name"
+                                prop="physicalpath"
                                 label="姓名"
                                 width="100">
                             </el-table-column>
                             <el-table-column
-                                prop="tel"
+                                prop="webpath"
                                 label="地址"
                                 width="150">
                             </el-table-column>
@@ -46,7 +46,7 @@
             </el-aside>
             <el-main>
                 <div>
-                    <img src="../pic/头像.jpeg" alt="Pulpit rock" width="400" height="400">
+                    <img id="pic" src="../pic/头像.jpeg" lt="Pulpit rock" width="400" height="400">
 
                 </div>
             </el-main>
@@ -62,11 +62,12 @@
             data: {
                 tableData: [],
                 message: "hello"
+
             },
 
             methods: {
                 getTabelData: function() {
-                    $.getJSON("http://localhost:8080/select?tablename=test", function(data) {
+                    $.getJSON("http://localhost:8080/select?tablename=car_pic_C01", function(data) {
                         //console.log(data)
                         for (j = 0; j < data.length; j++) {
                             var text = data[j]
@@ -87,7 +88,9 @@
                 openDetails: function(row) {
                     //具体操作        
                     console.log(row)
-                    dataControl.message = row.name
+                    var obj = document.getElementById("pic")
+                    obj.setAttribute("src", row.webpath)
+
                 }
             }
         });
