@@ -67,7 +67,7 @@
 
             methods: {
                 getTabelData: function() {
-                    $.getJSON("http://localhost:8080/select?tablename=car_pic_C01", function(data) {
+                    $.getJSON("http://yplearning.cn:8080/select?tablename=car_pic_C01", function(data) {
                         //console.log(data)
                         for (j = 0; j < data.length; j++) {
                             var text = data[j]
@@ -87,7 +87,7 @@
                 },
                 openDetails: function(row) {
                     //具体操作        
-                    console.log(row)
+                    console.log(row.webpath)
                     var obj = document.getElementById("pic")
                     obj.setAttribute("src", row.webpath)
 
